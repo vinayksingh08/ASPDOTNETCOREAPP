@@ -1,0 +1,59 @@
+﻿@*@model EmployeeManagmentASPDotNetCoreMVC.Models.Employee*@
+
+@model HomeDetailsViewModel
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml"; set in _viewStartPage
+    ViewBag.PageTitle = "Employee Details";
+    var photoPath = "~/Images/" + (Model.Employee.PhotoPath ?? "noimage.png");
+}
+@*<h3> @ViewData["PageTitle"] </h3>*@
+
+<h3> @Model.PageTitle </h3>
+@*@{
+
+        var Emp = ViewData["Emp"] as EmployeeManagmentASPDotNetCoreMVC.Models.Employee;
+    }
+    <div>
+        Name : @Emp.Name
+    </div>
+    <div>
+        Email ID : @Emp.Email
+    </div>
+    <div>
+        Department : @Emp.Department
+    </div>*@
+
+@*<div>
+        Name : @ViewBag.emp.Name
+    </div>
+    <div>
+        Email ID : @ViewBag.emp.Email
+    </div>
+    <div>
+        Department : @ViewBag.emp.Department
+    </div>*@
+
+<div>
+    Name : @Model.Employee.Name
+</div>
+<div>
+    Email ID : @Model.Employee.Email
+</div>
+<div>
+    Department : @Model.Employee.Department
+</div>
+<div>
+    Image : <img class="imageThumbnail" src="@photoPath" asp-append-version="true" height="50" width="50" />
+
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-success m-1"> Back</a>
+
+    <a asp-controller="Home" asp-action="Edit" asp-route-id="@Model.Employee.ID" class="btn btn-success m-1"> Edit</a>
+    <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.Employee.ID" class="btn btn-success m-1"> Delete</a>
+</div>
+@section Scripts
+{
+
+}

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Employee>
+   
+    @{
+        //Layout = "~/Views/Shared/_Layout.cshtml";  set in _viewStartPage
+        ViewBag.PageTitle = "Employee List";
+    }
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Emp in Model)
+            {
+                <tr>
+                    <td>@Emp.ID</td>
+                    <td>@Emp.Name</td>
+                    <td>@Emp.Department</td>
+                    <td>
+                        @*<a href="Home/details/@Emp.ID" class="btn btn-sm btn-primary rounded-0"> </a>*@
+                        <a asp-controller="Home" asp-action="Details" asp-route-id="@Emp.ID" class="btn btn-success m-1"> View</a>
+
+                        <a asp-controller="Home" asp-action="Edit" asp-route-id="@Emp.ID" class="btn btn-success m-1"> Edit</a>
+                        <a asp-controller="Home" asp-action="Delete" asp-route-id="@Emp.ID" class="btn btn-success m-1"> Delete</a>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+    <div>
+
+    </div>

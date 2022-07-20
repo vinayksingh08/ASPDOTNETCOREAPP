@@ -1,0 +1,52 @@
+﻿@*@model Employee*@
+@model EmployeeCreateViewModel
+@*@inject IEmployeeRepository _iEmployeeRepository*@
+@{
+    ViewBag.PageTitle = "Create Employee";
+}
+<form enctype="multipart/form-data" asp-controller="Home" asp-action="Create" method="post">
+    <div class="form-group row">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Department"></label>
+        <select asp-for="Department" asp-items="Html.GetEnumSelectList<Dept>()">
+            <option value="">Please Select</option>
+        </select>
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Photo"></label>
+        <div class="custom-file">
+            <input asp-for="Photo" class="form-control custom-file-input" />
+            <label class="custom-file-label">Choose File... </label>
+        </div>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group row">
+        <button type="submit" class="btn btn-success"> Create</button>
+    </div>
+
+    @*<div class="form-group row">
+            Total No Of Employee : @_iEmployeeRepository.GetAllEmployee().Count();
+        </div>*@
+    @section Scripts
+ {
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
+</form>
